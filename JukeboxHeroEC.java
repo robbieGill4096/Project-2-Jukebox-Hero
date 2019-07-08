@@ -2,12 +2,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * 
+ * @author Robbie
+ *
+ *Jukebox Hero extra credit. static variables have been eliminated and replaced with
+ *parameter passed in.
+ */
 public class JukeboxHeroEC {
 	
-	
-	
-	
+	/**
+	 *  * prompts the user for input, then determined on what the user inputs selects and loads 
+	 * a function. If the input is invalid it will call itself recusivly until the user enters
+	 * a valid input.
+	 * @param sl
+	 */
 	private static void displayMenu(ArrayList<Song> sl) {
 		
 		Scanner kbd = new Scanner(System.in);
@@ -52,6 +61,12 @@ public class JukeboxHeroEC {
 		} while (formattedSelection.isEmpty());
 
 	}
+	/**loads a Song catalog file based on user input then displays the number of songs within it.
+	 * 
+	 * @param sl ArrayList that the songs in the Catalog will be stored in.
+	 * @param kbd Scanner object that is used to allow the user to create input for selection.
+	 * @return the updated value of sl after the Songs in the catelog have been added.
+	 */
 	private static ArrayList loadCatalog(ArrayList<Song> sl, Scanner kbd) {
 		
 		System.out.println("Load Catalog...");
@@ -107,7 +122,11 @@ public class JukeboxHeroEC {
 		
 		return sl;
 	}
-	private static void printCatalog(ArrayList<Song> sl) {
+	/**
+	 * prints all the song objects in the sl ArrayList to the user.
+	 * @param sl ArrayList that the songs in the Catalog will be stored in.
+	 */
+private static void printCatalog(ArrayList<Song> sl) {
 		System.out.println("Song list contains " + sl.size() + " songs...");
 		System.out.println("---------------------------------");
 		for (Song x : sl) {
@@ -117,13 +136,18 @@ public class JukeboxHeroEC {
 		displayMenu(sl);
 		
 	}
+/**
+ * Searches the Catalog for specific songs based on user input.
+ * @param sl ArrayList that the songs in the Catalog will be stored in.
+ * @param kbd Scanner object that is used to allow the user to create input for selection
+ */
 	private static void searchCatalog(ArrayList<Song> sl, Scanner kbd) {
 		ArrayList<Song> searchResults = new ArrayList<Song>();
 		System.out.print("Search Catalog...\nPlease enter the search query: ");
 		String userInput = kbd.nextLine();
 		searchResults.clear();
 		String allLowerUserInput = userInput.toLowerCase();
-		// PROMPT USER FOR SEARCH QUERY
+		
 		for (Song x : sl) {
 			String title = x.getTitle();
 			String allLowerTitle = title.toLowerCase();
@@ -142,7 +166,13 @@ public class JukeboxHeroEC {
 		System.out.print("\nPlease enter a command (press 'm' for Menu): ");
 		displayMenu(sl);
 	}
-	public static int numberOfUniqueValues(ArrayList<Song> sl, String object) {
+	/**
+	 * finds the number of times an attribute of the song class occurs.
+	 * @param sl ArrayList that the songs in the Catalog will be stored in.
+	 * @param object specifies the type of attribute you wish to count the occurrences of.
+	 * @return the amount of times the objects attribute is found.
+	 */
+public static int numberOfUniqueValues(ArrayList<Song> sl, String object) {
 		ArrayList<String> occurances = new ArrayList<String>();
 		occurances.clear();
 		if (object.contains("album")) {
@@ -167,11 +197,17 @@ public class JukeboxHeroEC {
 			return -1;
 		}
 	}
-
+/**
+ * Counts the total number of seconds in each song attribute within the sl ArrayList and then
+ * prints the number of artists, albums songs and playtime.
+ * @param sl ArrayList that the songs in the Catalog will be stored in.
+ */
 	private static void analyseCatalog(ArrayList<Song> sl) {
 		int catPlayTime = 0;
 		for(Song x : sl) {
 			 int songTime = x.getPlayTime();
+			 catPlayTime +=songTime;
+			 
 		}
 	
 		System.out.println("Catalog Analysis...");
